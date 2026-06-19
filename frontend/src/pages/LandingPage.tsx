@@ -83,10 +83,10 @@ export const LandingPage = () => {
   return (
     <div className="flex-1 flex flex-col items-center justify-center p-6 bg-paper font-patrick text-ink">
       {/* Hand drawn decor */}
-      <div className="relative mb-12 -rotate-2 z-50">
+      <div className="relative mb-12 -rotate-2 z-50 inline-block text-center mt-6">
         <svg 
-          width="24" height="24" viewBox="0 0 28 28" fill="none" 
-          className="absolute -top-6 -left-8 hidden md:block drop-shadow-[0_0_8px_rgba(124,58,237,0.5)]"
+          width="32" height="32" viewBox="0 0 28 28" fill="none" 
+          className="absolute -top-5 -left-10 hidden md:block drop-shadow-[0_0_12px_rgba(124,58,237,0.6)]"
           style={{ animation: 'titleBounce 3s ease-in-out infinite' }}
         >
           <path d="M14 0C14 0 14 14 0 14C0 14 14 14 14 28C14 28 14 14 28 14C28 14 14 14 14 0Z" fill="url(#geminiGradSm)"/>
@@ -98,16 +98,14 @@ export const LandingPage = () => {
             </linearGradient>
           </defs>
         </svg>
-        <h1 className="text-6xl md:text-7xl font-bold flex items-center justify-center flex-wrap">
-          <span className="font-sans font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] via-[#7C3AED] to-[#06B6D4] mr-3 drop-shadow-sm pb-1">
+        <h1 className="text-6xl md:text-7xl font-kalam font-bold text-accent whitespace-nowrap">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] via-[#7C3AED] to-[#06B6D4] drop-shadow-sm pr-1">
             AI
           </span>
-          <span className="font-kalam text-accent">
-            Quiz Builder!
-          </span>
+          Quiz Builder!
           <svg 
-            width="40" height="40" viewBox="0 0 28 28" fill="none" 
-            className="inline-block align-super scale-75 ml-1 drop-shadow-[0_0_10px_rgba(124,58,237,0.4)]"
+            width="48" height="48" viewBox="0 0 28 28" fill="none" 
+            className="inline-block align-top -mt-3 ml-1 drop-shadow-[0_0_12px_rgba(124,58,237,0.6)]"
             style={{ animation: 'titleSpin 4s linear infinite' }}
           >
             <path d="M14 0C14 0 14 14 0 14C0 14 14 14 14 28C14 28 14 14 28 14C28 14 14 14 14 0Z" fill="url(#geminiGrad)"/>
