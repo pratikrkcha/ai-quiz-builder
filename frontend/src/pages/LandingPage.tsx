@@ -99,7 +99,7 @@ export const LandingPage = () => {
           </defs>
         </svg>
         <h1 className="text-6xl md:text-7xl font-kalam font-bold text-accent whitespace-nowrap">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] via-[#7C3AED] to-[#06B6D4] drop-shadow-sm pr-1">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] via-[#7C3AED] to-[#06B6D4] drop-shadow-sm pr-3">
             AI
           </span>
           Quiz Builder!
