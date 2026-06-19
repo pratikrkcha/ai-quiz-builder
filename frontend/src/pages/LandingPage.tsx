@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { useGameStore } from '../store/useGameStore';
-import { AILoadingScreen } from '../components/AILoadingScreen';
+import './AIButtonLoader.css';
 
 export const LandingPage = () => {
   const [topic, setTopic] = useState('');
@@ -9,8 +9,50 @@ export const LandingPage = () => {
   const [numQuestions, setNumQuestions] = useState<number>(5);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [typewriterText, setTypewriterText] = useState('');
+  const [typewriterIndex, setTypewriterIndex] = useState(0);
+  
   const [, setLocation] = useLocation();
   const setHostRole = useGameStore(state => state.setHostRole);
+
+  useEffect(() => {
+    if (!isLoading) {
+      setTypewriterText('');
+      setTypewriterIndex(0);
+      return;
+    }
+
+    const lines = [
+      "Reading your topic...",
+      "Crafting questions...",
+      "Almost ready..."
+    ];
+    
+    let currentLineIdx = typewriterIndex % lines.length;
+    let currentLine = lines[currentLineIdx];
+    let charIdx = 0;
+    let isMounted = true;
+    
+    const typeInterval = setInterval(() => {
+      if (!isMounted) return;
+      if (charIdx <= currentLine.length) {
+        setTypewriterText(currentLine.substring(0, charIdx));
+        charIdx++;
+      } else {
+        clearInterval(typeInterval);
+        setTimeout(() => {
+          if (!isMounted) return;
+          setTypewriterText('');
+          setTypewriterIndex(prev => prev + 1);
+        }, 1500);
+      }
+    }, 50);
+
+    return () => {
+      isMounted = false;
+      clearInterval(typeInterval);
+    };
+  }, [isLoading, typewriterIndex]);
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,25 +81,16 @@ export const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-paper font-patrick text-ink relative">
-      {isLoading && (
-        <div className="fixed inset-0 bg-[rgba(0,0,0,0.15)] z-40 pointer-events-none transition-opacity duration-500"></div>
-      )}
-      
+    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-paper font-patrick text-ink">
       {/* Hand drawn decor */}
-      <h1 className="text-6xl md:text-7xl font-kalam font-bold text-accent mb-12 -rotate-2 relative z-50">
+      <h1 className="text-6xl md:text-7xl font-kalam font-bold text-accent mb-12 -rotate-2">
         AI Quiz Builder!
       </h1>
       
       <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
         {/* Host Card */}
-        {isLoading ? (
-          <div className="w-full relative z-50 transition-all duration-300">
-            <AILoadingScreen />
-          </div>
-        ) : (
-          <div className="bg-white border-[3px] border-ink p-8 rounded-wobbly shadow-[6px_6px_0px_0px_#2d2d2d] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_#2d2d2d] transition-all duration-200 relative z-50">
-            <h2 className="text-3xl font-kalam mb-4 font-bold border-b-2 border-dashed border-ink pb-2">Host a Quiz</h2>
+        <div className="bg-white border-[3px] border-ink p-8 rounded-wobbly shadow-[6px_6px_0px_0px_#2d2d2d] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_#2d2d2d] transition-all duration-200">
+          <h2 className="text-3xl font-kalam mb-4 font-bold border-b-2 border-dashed border-ink pb-2">Host a Quiz</h2>
             <form onSubmit={handleCreate} className="space-y-4 pt-2">
               <div>
                 <label htmlFor="topic" className="block text-xl font-bold mb-2">What's the topic?</label>
@@ -116,16 +149,52 @@ export const LandingPage = () => {
               </div>
 
               {error && <p className="text-accent font-bold text-lg">{error}</p>}
-              <button 
-                type="submit" 
-                disabled={isLoading || !topic.trim()}
-                className="w-full bg-[#fff9c4] border-[3px] border-ink py-3 text-2xl font-bold rounded-wobbly shadow-[4px_4px_0px_0px_#2d2d2d] hover:bg-accent hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center group"
-              >
-                <span className="group-hover:-rotate-2 transition-transform">Generate Quiz</span>
-              </button>
+              
+              <div className="relative mt-4">
+                <div className="sparkle-container">
+                  <div className={`sparkle sparkle-1 ${isLoading ? 'show' : ''}`}>
+                    <svg className="sparkle-inner" viewBox="0 0 28 28" fill="none">
+                      <path d="M14 0C14 0 14 14 0 14C0 14 14 14 14 28C14 28 14 14 28 14C28 14 14 14 14 0Z" fill="#4285F4"/>
+                    </svg>
+                  </div>
+                  <div className={`sparkle sparkle-2 ${isLoading ? 'show' : ''}`}>
+                    <svg className="sparkle-inner" viewBox="0 0 28 28" fill="none">
+                      <path d="M14 0C14 0 14 14 0 14C0 14 14 14 14 28C14 28 14 14 28 14C28 14 14 14 14 0Z" fill="#7C3AED"/>
+                    </svg>
+                  </div>
+                  <div className={`sparkle sparkle-3 ${isLoading ? 'show' : ''}`}>
+                    <svg className="sparkle-inner" viewBox="0 0 28 28" fill="none">
+                      <path d="M14 0C14 0 14 14 0 14C0 14 14 14 14 28C14 28 14 14 28 14C28 14 14 14 14 0Z" fill="#06B6D4"/>
+                    </svg>
+                  </div>
+                </div>
+                
+                <button 
+                  type="submit" 
+                  disabled={isLoading || !topic.trim()}
+                  className={`w-full border-[3px] border-ink py-3 text-2xl font-bold rounded-wobbly shadow-[4px_4px_0px_0px_#2d2d2d] transition-all flex items-center justify-center group ${
+                    isLoading ? 'gemini-btn-loading' : 'bg-[#fff9c4] hover:bg-accent hover:text-white disabled:opacity-50 disabled:cursor-not-allowed'
+                  }`}
+                >
+                  <span className={isLoading ? '' : 'group-hover:-rotate-2 transition-transform'}>
+                    {isLoading ? 'Generating...' : 'Generate Quiz'}
+                  </span>
+                </button>
+              </div>
+
+              <div className="text-center min-h-[40px] pt-2" style={{ visibility: isLoading ? 'visible' : 'hidden' }}>
+                <div className="font-patrick text-[14px] text-[#4285F4]">
+                  {typewriterText}
+                </div>
+                <div className="font-patrick text-[12px] text-[#4285F4] flex items-center justify-center">
+                  <svg width="12" height="12" viewBox="0 0 28 28" fill="none" className="mr-1">
+                    <path d="M14 0C14 0 14 14 0 14C0 14 14 14 14 28C14 28 14 14 28 14C28 14 14 14 14 0Z" fill="#4285F4"/>
+                  </svg>
+                  Powered by Gemini
+                </div>
+              </div>
             </form>
           </div>
-        )}
 
         {/* Join Card */}
         <div className="bg-white border-[3px] border-ink p-8 rounded-wobblyMd shadow-[6px_6px_0px_0px_#2d2d2d] hover:rotate-1 hover:shadow-[8px_8px_0px_0px_#2d2d2d] transition-all duration-200 flex flex-col justify-center items-center text-center relative h-full">
