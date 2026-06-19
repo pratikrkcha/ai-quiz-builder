@@ -64,8 +64,8 @@ const RoomSchema = new Schema<IRoom>({
   questions: {
     type: [QuestionSchema],
     validate: [
-      (val: IQuestion[]) => val.length === 5, 
-      '{PATH} must contain exactly 5 questions'
+      (val: IQuestion[]) => val.length >= 1 && val.length <= 15, 
+      '{PATH} must contain between 1 and 15 questions'
     ]
   },
   players: {
