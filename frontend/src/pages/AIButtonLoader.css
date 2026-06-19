@@ -23,6 +23,16 @@
   100% { transform: rotate(360deg); }
 }
 
+@keyframes titleSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes titleBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
 .gemini-btn-loading {
   background: linear-gradient(90deg, #4285F4, #7C3AED, #06B6D4, #4285F4) !important;
   background-size: 200% 100% !important;

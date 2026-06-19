@@ -83,9 +83,39 @@ export const LandingPage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-paper font-patrick text-ink">
       {/* Hand drawn decor */}
-      <h1 className="text-6xl md:text-7xl font-kalam font-bold text-accent mb-12 -rotate-2">
-        AI Quiz Builder!
-      </h1>
+      <div className="relative mb-12 -rotate-2 z-50">
+        <svg 
+          width="16" height="16" viewBox="0 0 28 28" fill="none" 
+          className="absolute -top-4 -left-6 hidden md:block"
+          style={{ animation: 'titleBounce 3s ease-in-out infinite' }}
+        >
+          <path d="M14 0C14 0 14 14 0 14C0 14 14 14 14 28C14 28 14 14 28 14C28 14 14 14 14 0Z" fill="url(#geminiGradSm)"/>
+          <defs>
+            <linearGradient id="geminiGradSm" x1="0" y1="0" x2="28" y2="28">
+              <stop offset="0%" stop-color="#4285F4"/>
+              <stop offset="50%" stop-color="#7C3AED"/>
+              <stop offset="100%" stop-color="#06B6D4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <h1 className="text-6xl md:text-7xl font-kalam font-bold text-accent">
+          AI Quiz Builder!
+          <svg 
+            width="28" height="28" viewBox="0 0 28 28" fill="none" 
+            className="inline-block align-super scale-75 ml-1"
+            style={{ animation: 'titleSpin 4s linear infinite' }}
+          >
+            <path d="M14 0C14 0 14 14 0 14C0 14 14 14 14 28C14 28 14 14 28 14C28 14 14 14 14 0Z" fill="url(#geminiGrad)"/>
+            <defs>
+              <linearGradient id="geminiGrad" x1="0" y1="0" x2="28" y2="28">
+                <stop offset="0%" stop-color="#4285F4"/>
+                <stop offset="50%" stop-color="#7C3AED"/>
+                <stop offset="100%" stop-color="#06B6D4"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </h1>
+      </div>
       
       <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
         {/* Host Card */}
