@@ -15,8 +15,9 @@
   body {
     font-family: 'Patrick Hand', cursive;
     background-color: #fdfbf7;
-    background-image: radial-gradient(#e5e0d8 1px, transparent 1px);
-    background-size: 24px 24px;
+    background-image: linear-gradient(#e5e0d8 1px, transparent 1px),
+                      linear-gradient(90deg, #e5e0d8 1px, transparent 1px);
+    background-size: 32px 32px;
     color: #2d2d2d;
   }
 }
