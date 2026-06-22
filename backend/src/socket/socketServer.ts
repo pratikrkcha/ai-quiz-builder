@@ -31,8 +31,8 @@ export const setupSocketServer = (httpServer: HttpServer) => {
   });
 
   // Security: Event Wrapper handling Rate Limiting and Centralized Error Trapping
-  const wrap = (socket: Socket, handler: Function, rateLimitConfig?: { map: Map<string, number[]>, limit: number, windowMs: number }) => {
-    return async (payload?: any) => {
+  const wrap = (socket: Socket, handler: (io: Server, socket: Socket, payload?: unknown) => any, rateLimitConfig?: { map: Map<string, number[]>, limit: number, windowMs: number }) => {
+    return async (payload?: unknown) => {
       try {
         if (rateLimitConfig) {
           const allowed = checkRateLimit(socket.id, rateLimitConfig.map, rateLimitConfig.limit, rateLimitConfig.windowMs);
@@ -41,9 +41,10 @@ export const setupSocketServer = (httpServer: HttpServer) => {
           }
         }
         await handler(io, socket, payload);
-      } catch (err: any) {
-        console.error(`[Socket Error - ${socket.id} - ${socket.data?.uuid}]`, err.message);
-        socket.emit('error', { message: err.message });
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        console.error(`[Socket Error - ${socket.id} - ${socket.data?.uuid}]`, message);
+        socket.emit('error', { message });
       }
     };
   };
@@ -79,7 +80,9 @@ export const setupSocketServer = (httpServer: HttpServer) => {
         try {
           await removePlayer(roomCode, socket.id);
           io.to(roomCode).emit('player_disconnected', { socketId: socket.id });
-        } catch (e) {}
+        } catch (e) {
+          console.warn(`[Disconnect Cleanup Error] ${socket.id}`, e);
+        }
       }
     });
   });

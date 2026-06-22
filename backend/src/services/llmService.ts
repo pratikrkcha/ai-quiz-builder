@@ -40,7 +40,7 @@ export const sanitizeTopic = (topic: string): string => {
   }
   
   // Strip control characters and unusual symbols to prevent syntax breaks, leaving alphanumeric and standard punctuation
-  cleaned = cleaned.replace(/[^\w\s\-\.,\?'"!]/g, '');
+  cleaned = cleaned.replace(/[^\w\s\-.,?'"!]/g, '');
   return cleaned;
 };
 
@@ -134,12 +134,15 @@ export const generateQuestionsRaw = async (topic: string, numQuestions: number =
       
       return result.data;
       
-    } catch (err: any) {
+    } catch (err) {
        attempt++;
-       const isRetriable = err.name === 'AbortError' || err.isRetriable;
+       const isRetriable = (err instanceof Error && err.name === 'AbortError') || 
+                           (err instanceof QuizGenerationError && err.isRetriable);
        
        if (!isRetriable || attempt >= maxAttempts) {
-         throw new QuizGenerationError(err.message || 'Failed to generate questions', false, err.isSecurityIssue);
+         const message = err instanceof Error ? err.message : 'Failed to generate questions';
+         const isSecurityIssue = err instanceof QuizGenerationError ? err.isSecurityIssue : false;
+         throw new QuizGenerationError(message, false, isSecurityIssue);
        }
        
        // Exponential backoff: 1s, 2s, 4s
@@ -153,7 +156,7 @@ export const generateQuestionsRaw = async (topic: string, numQuestions: number =
 export const generateQuestions = async (topic: string, numQuestions: number = 5): Promise<IQuestion[]> => {
   try {
     return await generateQuestionsRaw(topic, numQuestions);
-  } catch (err: any) {
+  } catch (err) {
     // If the error was a security issue (prompt injection, bad length), we FAIL HARD.
     if (err instanceof QuizGenerationError && err.isSecurityIssue) {
       throw err;
@@ -164,7 +167,8 @@ export const generateQuestions = async (topic: string, numQuestions: number = 5)
     // we return a hardcoded pool of general knowledge questions.
     // Rationale: Ruining a live party game with an error screen is terrible UX. 
     // Serving generic questions allows the host and participants to continue playing without interruption.
-    console.warn('[LLM Service] Falling back to generic questions due to error:', err.message);
+    const message = err instanceof Error ? err.message : 'Unknown error';
+    console.warn('[LLM Service] Falling back to generic questions due to error:', message);
     return FALLBACK_QUESTIONS;
   }
 };

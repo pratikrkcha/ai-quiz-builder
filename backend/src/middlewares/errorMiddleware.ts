@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { QuizGenerationError } from '../services/llmService';
 
-export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error('[Express Error]', err.stack || err.message);
 
   // Handle LLM specific errors

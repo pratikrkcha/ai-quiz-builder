@@ -1,4 +1,4 @@
-import { RoomModel, IRoom, IQuestion } from '../models/Room';
+import { RoomModel, IQuestion } from '../models/Room';
 
 export class RoomError extends Error {
   constructor(public code: string, message: string) {
@@ -21,8 +21,8 @@ export const createRoom = async (roomCode: string, hostToken: string, questions:
       players: []
     });
     return await room.save();
-  } catch (err: any) {
-    if (err.code === 11000) {
+  } catch (err) {
+    if (err instanceof Error && 'code' in err && err.code === 11000) {
       throw new RoomError('ROOM_CODE_COLLISION', 'Room code already exists');
     }
     throw err;

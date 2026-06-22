@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { generateQuestions, generateQuestionsRaw, QuizGenerationError } from './llmService';
+import { generateQuestions, generateQuestionsRaw } from './llmService';
 
 const originalFetch = global.fetch;
 
@@ -47,7 +47,7 @@ describe('LLM Service', () => {
   });
 
   it('successfully generates questions on happy path', async () => {
-    vi.mocked(global.fetch).mockResolvedValueOnce(mockSuccessResponse() as any);
+    vi.mocked(global.fetch).mockResolvedValueOnce(mockSuccessResponse() as unknown as Response);
     const questions = await generateQuestionsRaw('Science');
     expect(questions.length).toBe(5);
     expect(questions[0].text).toBe('Q1');
@@ -71,7 +71,7 @@ describe('LLM Service', () => {
           }
         }]
       })
-    } as any);
+    } as unknown as Response);
     
     const questions = await generateQuestionsRaw('Math');
     expect(questions.length).toBe(5);
@@ -85,7 +85,7 @@ describe('LLM Service', () => {
           content: { parts: [{ text: JSON.stringify([{ text: "Q1", options: ["A"], correctIndex: 0 }]) }] }
         }]
       })
-    } as any);
+    } as unknown as Response);
 
     // Should exhaust retries and throw
     await expect(generateQuestionsRaw('Science')).rejects.toThrow('LLM returned valid JSON but incorrect schema');
@@ -94,9 +94,9 @@ describe('LLM Service', () => {
 
   it('retries on 429 and succeeds on the third attempt', async () => {
     vi.mocked(global.fetch)
-      .mockResolvedValueOnce({ ok: false, status: 429 } as any)
-      .mockResolvedValueOnce({ ok: false, status: 429 } as any)
-      .mockResolvedValueOnce(mockSuccessResponse() as any);
+      .mockResolvedValueOnce({ ok: false, status: 429 } as unknown as Response)
+      .mockResolvedValueOnce({ ok: false, status: 429 } as unknown as Response)
+      .mockResolvedValueOnce(mockSuccessResponse() as unknown as Response);
 
     const questions = await generateQuestionsRaw('Science');
     expect(questions.length).toBe(5);

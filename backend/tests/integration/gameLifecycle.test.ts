@@ -1,15 +1,17 @@
 import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'vitest';
-import { createServer } from 'http';
+import { createServer, Server as HttpServer } from 'http';
 import { setupSocketServer } from '../../src/socket/socketServer';
 import { io as Client, Socket as ClientSocket } from 'socket.io-client';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import { createRoom } from '../../src/dal/roomRepository';
 import app from '../../src/app';
+import { AddressInfo } from 'net';
+import { Server as SocketIOServer } from 'socket.io';
 
 let mongoServer: MongoMemoryServer;
-let ioServer: any;
-let httpServer: any;
+let ioServer: SocketIOServer;
+let httpServer: HttpServer;
 let port: number;
 
 beforeAll(async () => {
@@ -21,7 +23,7 @@ beforeAll(async () => {
   
   await new Promise<void>((resolve) => {
     httpServer.listen(0, () => {
-      port = (httpServer.address() as any).port;
+      port = (httpServer.address() as AddressInfo).port;
       resolve();
     });
   });
@@ -43,13 +45,13 @@ const createClient = (): ClientSocket => {
 };
 
 const waitForEvent = (client: ClientSocket, event: string) => {
-  return new Promise<any>((resolve) => client.once(event, resolve));
+  return new Promise<unknown>((resolve) => client.once(event, resolve));
 };
 
 describe('End-to-End Game Lifecycle Integration Tests', () => {
 
   it('Happy Path - Complete Game Simulation', async () => {
-    const room = await createRoom('ABCD', 'host123', [
+    await createRoom('ABCD', 'host123', [
       { text: 'Q1', options: ['A','B','C','D'], correctIndex: 0 }
     ]);
     
@@ -99,7 +101,7 @@ describe('End-to-End Game Lifecycle Integration Tests', () => {
   });
 
   it('Concurrent Answer Submission Resiliency', async () => {
-    const room = await createRoom('CONC', 'host123', [
+    await createRoom('CONC', 'host123', [
       { text: 'Q1', options: ['A','B','C','D'], correctIndex: 1 }
     ]);
 
@@ -131,18 +133,18 @@ describe('End-to-End Game Lifecycle Integration Tests', () => {
     expect(closedEvent.leaderboard.length).toBe(10);
     
     // All should have valid point values > 0 without Mongo lock collisions
-    expect(closedEvent.leaderboard.every((l: any) => l.score > 0)).toBe(true);
+    expect((closedEvent as { leaderboard: { score: number }[] }).leaderboard.every(l => l.score > 0)).toBe(true);
 
     players.forEach(p => p.disconnect());
     host.disconnect();
   });
 
   it('Player Disconnect and Reconnect Preservation', async () => {
-    const room = await createRoom('RECO', 'host123', [
+    await createRoom('RECO', 'host123', [
       { text: 'Q1', options: ['A','B','C','D'], correctIndex: 2 }
     ]);
     
-    let p1 = createClient();
+    const p1 = createClient();
     p1.emit('player_join', { roomCode: 'RECO', nickname: 'Alice' });
     await waitForEvent(p1, 'join_success');
 
@@ -174,7 +176,7 @@ describe('End-to-End Game Lifecycle Integration Tests', () => {
   });
 
   it('Host Disconnect emits host_disconnected', async () => {
-    const room = await createRoom('HDRO', 'host123', [
+    await createRoom('HDRO', 'host123', [
       { text: 'Q1', options: ['A','B','C','D'], correctIndex: 0 }
     ]);
 
@@ -197,7 +199,7 @@ describe('End-to-End Game Lifecycle Integration Tests', () => {
   });
 
   it('Answer Submission Idempotency (Spam Protection)', async () => {
-    const room = await createRoom('IDEM', 'host123', [
+    await createRoom('IDEM', 'host123', [
       { text: 'Q1', options: ['A','B','C','D'], correctIndex: 0 }
     ]);
 
