@@ -74,34 +74,34 @@ export const HostGamePanel = () => {
   if (!currentQuestion) return null;
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row p-4 lg:p-8 gap-8 font-patrick text-ink">
+    <div className="min-h-screen flex flex-col lg:flex-row p-2 sm:p-4 lg:p-8 gap-4 md:gap-8 font-patrick text-ink">
       
       {/* Left Column: Question Area */}
       <div className="flex-1 flex flex-col max-w-4xl">
-        <div className="bg-white border-[3px] border-ink p-6 md:p-10 rounded-wobbly shadow-[8px_8px_0px_0px_#2d2d2d] flex-1 flex flex-col relative">
+        <div className="bg-white border-[3px] border-ink p-4 sm:p-6 md:p-10 rounded-wobbly shadow-[6px_6px_0px_0px_#2d2d2d] md:shadow-[8px_8px_0px_0px_#2d2d2d] flex-1 flex flex-col relative">
           {/* Tape decor */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-6 bg-gray-300/40 rotate-1 backdrop-blur-sm"></div>
 
-          <div className="flex justify-between items-center mb-8 border-b-2 border-dashed border-ink pb-4">
-            <h2 className="text-2xl md:text-3xl font-kalam font-bold text-bluepen">
+          <div className="flex justify-between items-center mb-4 md:mb-8 border-b-2 border-dashed border-ink pb-2 md:pb-4">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-kalam font-bold text-bluepen">
               Question {currentQuestion.index + 1} <span className="text-ink/50">of {questionCount}</span>
             </h2>
             {!isQuestionClosed ? (
-              <div className="text-3xl font-kalam font-bold flex items-center bg-accent text-white px-6 py-2 rounded-wobbly border-[3px] border-ink rotate-2 shadow-[2px_2px_0px_0px_#2d2d2d]">
+              <div className="text-2xl md:text-3xl font-kalam font-bold flex items-center bg-accent text-white px-4 md:px-6 py-1 md:py-2 rounded-wobbly border-[2px] md:border-[3px] border-ink rotate-2 shadow-[2px_2px_0px_0px_#2d2d2d]">
                 ⏱ {timeLeft}s
               </div>
             ) : (
-              <div className="text-3xl font-kalam font-bold text-accent -rotate-2 animate-pulse">
+              <div className="text-2xl md:text-3xl font-kalam font-bold text-accent -rotate-2 animate-pulse">
                 Time's Up!
               </div>
             )}
           </div>
           
-          <h1 className="text-3xl md:text-5xl font-bold mb-12 flex-1 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-6 md:mb-12 flex-1 leading-tight">
             {currentQuestion.text}
           </h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
             {currentQuestion.options.map((opt, idx) => {
               const isCorrect = isQuestionClosed && correctAnswerIndex === idx;
               const isWrong = isQuestionClosed && correctAnswerIndex !== null && correctAnswerIndex !== idx;
@@ -113,9 +113,9 @@ export const HostGamePanel = () => {
               return (
                 <div 
                   key={idx}
-                  className={`${bgClass} border-[3px] border-ink p-4 rounded-wobblyMd text-2xl font-bold transition-all flex items-center shadow-[4px_4px_0px_0px_#2d2d2d]`}
+                  className={`${bgClass} border-[2px] md:border-[3px] border-ink p-3 md:p-4 rounded-wobblyMd text-lg sm:text-xl md:text-2xl font-bold transition-all flex items-center shadow-[4px_4px_0px_0px_#2d2d2d]`}
                 >
-                  <span className="w-10 h-10 min-w-10 rounded-full border-[3px] border-ink flex items-center justify-center mr-4 bg-paper text-ink font-kalam text-xl">
+                  <span className="w-8 h-8 sm:w-10 sm:h-10 min-w-8 sm:min-w-10 rounded-full border-[2px] md:border-[3px] border-ink flex items-center justify-center mr-3 md:mr-4 bg-paper text-ink font-kalam text-lg sm:text-xl">
                     {['A','B','C','D'][idx]}
                   </span>
                   <span>{opt}</span>
@@ -124,11 +124,11 @@ export const HostGamePanel = () => {
             })}
           </div>
 
-          <div className="mt-12 flex justify-end">
+          <div className="mt-6 md:mt-12 flex justify-end">
             <button 
               onClick={handleNextQuestion}
               disabled={isNexting || !isQuestionClosed}
-              className="bg-[#fff9c4] text-ink border-[3px] border-ink py-4 px-10 text-3xl font-kalam font-bold rounded-wobbly shadow-[6px_6px_0px_0px_#2d2d2d] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_#2d2d2d] active:translate-y-1 active:shadow-none disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 transition-all hover:bg-accent hover:text-white"
+              className="bg-[#fff9c4] text-ink border-[2px] md:border-[3px] border-ink py-3 md:py-4 px-6 md:px-10 text-xl md:text-3xl font-kalam font-bold rounded-wobbly shadow-[4px_4px_0px_0px_#2d2d2d] md:shadow-[6px_6px_0px_0px_#2d2d2d] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_#2d2d2d] active:translate-y-1 active:shadow-none disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 transition-all hover:bg-accent hover:text-white"
             >
               {isNexting ? 'Loading...' : 'Next Question ➔'}
             </button>

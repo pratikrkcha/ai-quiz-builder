@@ -184,20 +184,20 @@ export const PlayerView = () => {
   if (!currentQuestion) return null;
 
   return (
-    <div className="min-h-screen flex flex-col p-4 md:p-8 font-patrick text-ink">
+    <div className="min-h-screen flex flex-col p-2 sm:p-4 md:p-8 font-patrick text-ink">
       
       {/* Top Bar */}
-      <div className="flex flex-row items-center justify-between mb-6 md:mb-10 bg-white border-[3px] border-ink p-4 md:p-6 rounded-wobbly shadow-[4px_4px_0px_0px_#2d2d2d]">
+      <div className="flex flex-row items-center justify-between mb-3 md:mb-10 bg-white border-[3px] border-ink p-2 sm:p-4 md:p-6 rounded-wobbly shadow-[4px_4px_0px_0px_#2d2d2d] text-sm sm:text-base">
         
         {/* LEFT — nickname */}
         <div className="w-1/4 flex justify-start">
-          <span className="font-bold text-2xl bg-[#fff9c4] px-4 py-1 border-2 border-ink rounded-wobblyMd hidden sm:inline -rotate-1 shadow-sm truncate max-w-full">
+          <span className="font-bold text-lg md:text-2xl bg-[#fff9c4] px-2 sm:px-4 py-1 border-2 border-ink rounded-wobblyMd hidden sm:inline -rotate-1 shadow-sm truncate max-w-full">
             {nickname}
           </span>
         </div>
 
         {/* CENTER — feedback appears here after answering */}
-        <div className="w-2/4 flex justify-center items-center gap-3 text-3xl font-bold font-kalam text-center">
+        <div className="w-2/4 flex justify-center items-center gap-1 sm:gap-3 text-lg sm:text-2xl md:text-3xl font-bold font-kalam text-center leading-tight">
           {isQuestionClosed && answerResult ? (
             <div className="animate-bounce">
               <span className={answerResult.correct ? 'text-[#4ade80] drop-shadow-sm' : 'text-[#ff4d4d]'}>
@@ -213,13 +213,13 @@ export const PlayerView = () => {
         </div>
 
         {/* RIGHT — score, rank, question counter */}
-        <div className="w-1/4 flex justify-end items-center gap-4 text-xl md:text-2xl font-bold">
+        <div className="w-1/4 flex justify-end items-center gap-2 md:gap-4 text-sm sm:text-xl md:text-2xl font-bold">
           <div className="flex flex-col md:flex-row items-end md:items-center gap-1 md:gap-3 text-right">
             <span>Score: <span className="font-kalam text-accent">{displayScore}</span></span>
             {myRank > 0 && <span className="text-ink/60 hidden lg:inline">· Rank #{myRank}</span>}
           </div>
-          <div className="font-kalam text-xl md:text-2xl text-[#2d5da1] bg-muted px-4 py-1 rounded-wobbly border-[3px] border-ink rotate-2 italic whitespace-nowrap">
-            Q{currentQuestion.index + 1} of {questionCount || 5}
+          <div className="font-kalam text-sm sm:text-xl md:text-2xl text-[#2d5da1] bg-muted px-2 sm:px-4 py-1 rounded-wobbly border-[2px] md:border-[3px] border-ink rotate-2 italic whitespace-nowrap">
+            Q{currentQuestion.index + 1}/{questionCount || 5}
           </div>
         </div>
         
@@ -227,32 +227,32 @@ export const PlayerView = () => {
 
       {/* Main Layout Area */}
       <div className="flex-1 flex flex-col max-w-6xl w-full mx-auto relative">
-        <div className="flex flex-col md:flex-row gap-6 items-start w-full">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-start w-full">
           
           {/* LEFT — existing question card */}
           <div className="flex-1 w-full">
-            <div className="bg-white border-[3px] border-ink p-6 md:p-12 rounded-wobbly shadow-[8px_8px_0px_0px_#2d2d2d] flex flex-col relative z-10">
+            <div className="bg-white border-[3px] border-ink p-4 sm:p-6 md:p-12 rounded-wobbly shadow-[6px_6px_0px_0px_#2d2d2d] md:shadow-[8px_8px_0px_0px_#2d2d2d] flex flex-col relative z-10">
           
           {/* Progress Bar Timer */}
           {!isQuestionClosed && currentQuestion.timeLimitMs && (
-            <div className="w-full mb-8 relative">
-              <div className="w-full h-8 bg-muted border-[3px] border-ink rounded-wobbly overflow-hidden relative">
+            <div className="w-full mb-3 md:mb-8 relative">
+              <div className="w-full h-6 md:h-8 bg-muted border-[2px] md:border-[3px] border-ink rounded-wobbly overflow-hidden relative">
                 <div 
-                  className={`absolute top-0 left-0 h-full bg-[#ff4d4d] transition-all duration-1000 ease-linear border-r-[3px] border-ink ${timeLeft <= 5 ? 'animate-pulse' : ''}`}
+                  className={`absolute top-0 left-0 h-full bg-[#ff4d4d] transition-all duration-1000 ease-linear border-r-[2px] md:border-r-[3px] border-ink ${timeLeft <= 5 ? 'animate-pulse' : ''}`}
                   style={{ width: `${(timeLeft / (currentQuestion.timeLimitMs / 1000)) * 100}%` }}
                 ></div>
-                <div className={`absolute inset-0 flex items-center justify-center font-kalam font-bold text-2xl drop-shadow-md z-10 ${timeLeft <= 5 ? 'text-white' : 'text-ink'}`}>
+                <div className={`absolute inset-0 flex items-center justify-center font-kalam font-bold text-xl md:text-2xl drop-shadow-md z-10 ${timeLeft <= 5 ? 'text-white' : 'text-ink'}`}>
                   {timeLeft}s
                 </div>
               </div>
             </div>
           )}
 
-          <h1 className="text-3xl md:text-5xl font-bold mb-10 md:mb-14 flex-1 leading-snug">
+          <h1 className="text-xl sm:text-3xl md:text-5xl font-bold mb-4 md:mb-14 flex-1 leading-tight sm:leading-snug">
             {currentQuestion.text}
           </h1>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-6">
             {currentQuestion.options.map((opt, idx) => {
               const isSelected = localSelection === idx;
               
@@ -289,9 +289,9 @@ export const PlayerView = () => {
                   key={idx}
                   disabled={localSelection !== null || isQuestionClosed}
                   onClick={() => handleAnswerSubmit(idx)}
-                  className={`w-full text-left min-h-[5rem] border-[3px] border-ink p-4 md:p-6 rounded-wobblyMd text-2xl md:text-3xl font-bold transition-all flex items-center ${btnClass} ${shadow} ${textColor} touch-manipulation`}
+                  className={`w-full text-left min-h-[3.5rem] md:min-h-[5rem] border-[2px] md:border-[3px] border-ink p-2 sm:p-4 md:p-6 rounded-wobblyMd text-lg sm:text-2xl md:text-3xl font-bold transition-all flex items-center ${btnClass} ${shadow} ${textColor} touch-manipulation`}
                 >
-                  <span className={`w-12 h-12 min-w-[3rem] rounded-full border-[3px] border-ink flex items-center justify-center mr-4 md:mr-6 font-kalam text-2xl ${isQuestionClosed && correctAnswerIndex === idx ? 'bg-white text-ink' : 'bg-paper text-ink'}`}>
+                  <span className={`w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 min-w-[2rem] sm:min-w-[2.5rem] md:min-w-[3rem] rounded-full border-[2px] md:border-[3px] border-ink flex items-center justify-center mr-3 md:mr-6 font-kalam text-lg sm:text-xl md:text-2xl ${isQuestionClosed && correctAnswerIndex === idx ? 'bg-white text-ink' : 'bg-paper text-ink'}`}>
                     {['A','B','C','D'][idx]}
                   </span>
                   <span className="leading-tight">{opt}</span>
