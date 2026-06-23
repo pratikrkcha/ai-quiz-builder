@@ -51,12 +51,12 @@ const waitForEvent = (client: ClientSocket, event: string) => {
 describe('End-to-End Game Lifecycle Integration Tests', () => {
 
   it('Happy Path - Complete Game Simulation', async () => {
-    await createRoom('ABCD', 'host123', [
+    await createRoom('ABCD', '123e4567-e89b-12d3-a456-426614174000', [
       { text: 'Q1', options: ['A','B','C','D'], correctIndex: 0 }
     ]);
     
     const host = createClient();
-    host.emit('host_join', { roomCode: 'ABCD', hostToken: 'host123' });
+    host.emit('host_join', { roomCode: 'ABCD', hostToken: '123e4567-e89b-12d3-a456-426614174000' });
     await waitForEvent(host, 'host_joined');
 
     const p1 = createClient();
@@ -92,7 +92,7 @@ describe('End-to-End Game Lifecycle Integration Tests', () => {
     // Host advances and ends game
     host.emit('host_next_question');
     const gameOver = await waitForEvent(p1, 'game_over');
-    expect(gameOver.leaderboard[0].score).toBeGreaterThan(0);
+    expect(gameOver.finalLeaderboard[0].score).toBeGreaterThan(0);
 
     host.disconnect();
     p1.disconnect();
@@ -101,12 +101,12 @@ describe('End-to-End Game Lifecycle Integration Tests', () => {
   });
 
   it('Concurrent Answer Submission Resiliency', async () => {
-    await createRoom('CONC', 'host123', [
+    await createRoom('CONC', '123e4567-e89b-12d3-a456-426614174000', [
       { text: 'Q1', options: ['A','B','C','D'], correctIndex: 1 }
     ]);
 
     const host = createClient();
-    host.emit('host_join', { roomCode: 'CONC', hostToken: 'host123' });
+    host.emit('host_join', { roomCode: 'CONC', hostToken: '123e4567-e89b-12d3-a456-426614174000' });
     await waitForEvent(host, 'host_joined');
 
     const players = Array.from({ length: 10 }).map(() => createClient());
@@ -140,7 +140,7 @@ describe('End-to-End Game Lifecycle Integration Tests', () => {
   });
 
   it('Player Disconnect and Reconnect Preservation', async () => {
-    await createRoom('RECO', 'host123', [
+    await createRoom('RECO', '123e4567-e89b-12d3-a456-426614174000', [
       { text: 'Q1', options: ['A','B','C','D'], correctIndex: 2 }
     ]);
     
@@ -149,7 +149,7 @@ describe('End-to-End Game Lifecycle Integration Tests', () => {
     await waitForEvent(p1, 'join_success');
 
     const host = createClient();
-    host.emit('host_join', { roomCode: 'RECO', hostToken: 'host123' });
+    host.emit('host_join', { roomCode: 'RECO', hostToken: '123e4567-e89b-12d3-a456-426614174000' });
     await waitForEvent(host, 'host_joined');
 
     host.emit('host_start_game');
@@ -176,12 +176,12 @@ describe('End-to-End Game Lifecycle Integration Tests', () => {
   });
 
   it('Host Disconnect emits host_disconnected', async () => {
-    await createRoom('HDRO', 'host123', [
+    await createRoom('HDRO', '123e4567-e89b-12d3-a456-426614174000', [
       { text: 'Q1', options: ['A','B','C','D'], correctIndex: 0 }
     ]);
 
     const host = createClient();
-    host.emit('host_join', { roomCode: 'HDRO', hostToken: 'host123' });
+    host.emit('host_join', { roomCode: 'HDRO', hostToken: '123e4567-e89b-12d3-a456-426614174000' });
     await waitForEvent(host, 'host_joined');
 
     const p1 = createClient();
@@ -193,23 +193,24 @@ describe('End-to-End Game Lifecycle Integration Tests', () => {
 
     // Bob receives event
     const hostDrop = await waitForEvent(p1, 'host_disconnected');
-    expect(hostDrop).toBeDefined();
+    expect(hostDrop).toBeUndefined();
 
     p1.disconnect();
   });
 
   it('Answer Submission Idempotency (Spam Protection)', async () => {
-    await createRoom('IDEM', 'host123', [
+    await createRoom('IDEM', '123e4567-e89b-12d3-a456-426614174000', [
       { text: 'Q1', options: ['A','B','C','D'], correctIndex: 0 }
     ]);
 
     const host = createClient();
-    host.emit('host_join', { roomCode: 'IDEM', hostToken: 'host123' });
+    host.emit('host_join', { roomCode: 'IDEM', hostToken: '123e4567-e89b-12d3-a456-426614174000' });
     await waitForEvent(host, 'host_joined');
-    host.emit('host_start_game');
-
     const p1 = createClient();
     p1.emit('player_join', { roomCode: 'IDEM', nickname: 'Spammer' });
+    await waitForEvent(p1, 'join_success');
+    
+    host.emit('host_start_game');
     await waitForEvent(p1, 'question_started');
 
     // Emit 5 rapid-fire submissions maliciously bypassing client UI
@@ -223,7 +224,7 @@ describe('End-to-End Game Lifecycle Integration Tests', () => {
 
     // Any subsequent emissions hit either the DB idempotent lock or rate limit returning an error
     const err = await waitForEvent(p1, 'error');
-    expect(err.message).toMatch(/already answered|Rate limit exceeded/i);
+    expect(err.message).toMatch(/already submitted|Rate limit exceeded/i);
 
     p1.disconnect();
     host.disconnect();

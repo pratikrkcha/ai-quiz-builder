@@ -57,7 +57,9 @@ describe('POST /api/rooms Integration', () => {
   });
 
   it('respects rate limits (6th request fails)', async () => {
-    vi.spyOn(llmService, 'generateQuestions').mockResolvedValue([]);
+    vi.spyOn(llmService, 'generateQuestions').mockResolvedValue([
+      { text: 'Q1', options: ['A','B','C','D'], correctIndex: 1 }
+    ]);
     
     for (let i = 0; i < 5; i++) {
       await request(app).post('/api/rooms').send({ topic: `Topic ${i}` });

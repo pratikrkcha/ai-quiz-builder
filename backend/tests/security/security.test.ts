@@ -66,7 +66,7 @@ describe('Security Hardening Tests', () => {
   });
 
   it('prevents participant from emitting host events (Elevation of Privilege)', async () => {
-    await createRoom('1111', 'host-token', [{ text: 'Q1', options: ['A','B','C','D'], correctIndex: 1 }]);
+    await createRoom('1111', '123e4567-e89b-12d3-a456-426614174000', [{ text: 'Q1', options: ['A','B','C','D'], correctIndex: 1 }]);
     const playerSocket = createClient();
     playerSocket.emit('player_join', { roomCode: '1111', nickname: 'Alice' });
     await waitForEvent(playerSocket, 'join_success');
@@ -79,14 +79,15 @@ describe('Security Hardening Tests', () => {
   });
 
   it('enforces socket event rate limit for submit_answer preventing DB DoS', async () => {
-    await createRoom('2222', 'host-token', [{ text: 'Q1', options: ['A','B','C','D'], correctIndex: 1 }]);
+    await createRoom('2222', '123e4567-e89b-12d3-a456-426614174000', [{ text: 'Q1', options: ['A','B','C','D'], correctIndex: 1 }]);
     const hostSocket = createClient();
-    hostSocket.emit('host_join', { roomCode: '2222', hostToken: 'host-token' });
+    hostSocket.emit('host_join', { roomCode: '2222', hostToken: '123e4567-e89b-12d3-a456-426614174000' });
     await waitForEvent(hostSocket, 'host_joined');
-    hostSocket.emit('host_start_game');
-
     const playerSocket = createClient();
     playerSocket.emit('player_join', { roomCode: '2222', nickname: 'Spammer' });
+    await waitForEvent(playerSocket, 'join_success'); // wait for join
+    
+    hostSocket.emit('host_start_game');
     await waitForEvent(playerSocket, 'question_started'); // wait until game starts
 
     let errorCount = 0;

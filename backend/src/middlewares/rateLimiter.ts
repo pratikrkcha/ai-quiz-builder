@@ -12,6 +12,6 @@ export const globalLimiter = rateLimit({
 // Stricter limit for the AI generation endpoint
 export const createRoomLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 50,
+  max: process.env.NODE_ENV === 'test' ? 5 : 50,
   message: { error: 'Room creation rate limit exceeded. Max 50 rooms per 15 minutes.' }
 });

@@ -51,7 +51,7 @@ describe('Socket.io Game Flow Integration', () => {
       { text: 'Q1', options: ['A','B','C','D'], correctIndex: 1 }
     ];
     const roomCode = '9999';
-    const hostToken = 'host-123';
+    const hostToken = '123e4567-e89b-12d3-a456-426614174000';
     await createRoom(roomCode, hostToken, questions);
 
     const hostSocket = createClient();

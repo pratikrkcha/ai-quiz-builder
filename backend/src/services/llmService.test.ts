@@ -1,6 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { generateQuestions, generateQuestionsRaw } from './llmService';
 
+vi.unmock('./llmService');
+
 const originalFetch = global.fetch;
 
 beforeEach(() => {
@@ -20,11 +22,11 @@ const mockSuccessResponse = () => ({
       content: {
         parts: [{
           text: JSON.stringify([
-            { text: "Q1", options: ["A", "B", "C", "D"], correctIndex: 0 },
-            { text: "Q2", options: ["A", "B", "C", "D"], correctIndex: 1 },
-            { text: "Q3", options: ["A", "B", "C", "D"], correctIndex: 2 },
-            { text: "Q4", options: ["A", "B", "C", "D"], correctIndex: 3 },
-            { text: "Q5", options: ["A", "B", "C", "D"], correctIndex: 0 }
+            { text: "Question 1", options: ["A", "B", "C", "D"], correctIndex: 0 },
+            { text: "Question 2", options: ["A", "B", "C", "D"], correctIndex: 1 },
+            { text: "Question 3", options: ["A", "B", "C", "D"], correctIndex: 2 },
+            { text: "Question 4", options: ["A", "B", "C", "D"], correctIndex: 3 },
+            { text: "Question 5", options: ["A", "B", "C", "D"], correctIndex: 0 }
           ])
         }]
       }
@@ -50,7 +52,7 @@ describe('LLM Service', () => {
     vi.mocked(global.fetch).mockResolvedValueOnce(mockSuccessResponse() as unknown as Response);
     const questions = await generateQuestionsRaw('Science');
     expect(questions.length).toBe(5);
-    expect(questions[0].text).toBe('Q1');
+    expect(questions[0].text).toBe('Question 1');
   });
 
   it('recovers from markdown fences in LLM response', async () => {
@@ -61,11 +63,11 @@ describe('LLM Service', () => {
           content: {
             parts: [{
               text: "```json\n" + JSON.stringify([
-                { text: "Q1", options: ["A", "B", "C", "D"], correctIndex: 0 },
-                { text: "Q2", options: ["A", "B", "C", "D"], correctIndex: 1 },
-                { text: "Q3", options: ["A", "B", "C", "D"], correctIndex: 2 },
-                { text: "Q4", options: ["A", "B", "C", "D"], correctIndex: 3 },
-                { text: "Q5", options: ["A", "B", "C", "D"], correctIndex: 0 }
+                { text: "Question 1", options: ["A", "B", "C", "D"], correctIndex: 0 },
+                { text: "Question 2", options: ["A", "B", "C", "D"], correctIndex: 1 },
+                { text: "Question 3", options: ["A", "B", "C", "D"], correctIndex: 2 },
+                { text: "Question 4", options: ["A", "B", "C", "D"], correctIndex: 3 },
+                { text: "Question 5", options: ["A", "B", "C", "D"], correctIndex: 0 }
               ]) + "\n```"
             }]
           }
@@ -104,7 +106,9 @@ describe('LLM Service', () => {
   });
 
   it('returns fallback questions on network timeout or total failure (generateQuestions wrapper)', async () => {
-    vi.mocked(global.fetch).mockRejectedValue(new Error('Network timeout'));
+    const err = new Error('Network timeout');
+    err.name = 'AbortError';
+    vi.mocked(global.fetch).mockRejectedValue(err);
 
     const questions = await generateQuestions('History');
     // Fallback array length is 5
