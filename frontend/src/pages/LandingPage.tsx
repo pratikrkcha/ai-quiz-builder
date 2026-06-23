@@ -92,7 +92,6 @@ export const LandingPage = () => {
         <svg 
           width="32" height="32" viewBox="0 0 28 28" fill="none" 
           className="absolute -top-5 -left-10 hidden md:block drop-shadow-[0_0_12px_rgba(124,58,237,0.6)]"
-          style={{ animation: 'titleBounce 3s ease-in-out infinite' }}
         >
           <path d="M14 0C14 0 14 14 0 14C0 14 14 14 14 28C14 28 14 14 28 14C28 14 14 14 14 0Z" fill="url(#geminiGradSm)"/>
           <defs>
@@ -111,7 +110,6 @@ export const LandingPage = () => {
           <svg 
             width="48" height="48" viewBox="0 0 28 28" fill="none" 
             className="inline-block align-top -mt-3 ml-1 drop-shadow-[0_0_12px_rgba(124,58,237,0.6)]"
-            style={{ animation: 'titleSpin 4s linear infinite' }}
           >
             <path d="M14 0C14 0 14 14 0 14C0 14 14 14 14 28C14 28 14 14 28 14C28 14 14 14 14 0Z" fill="url(#geminiGrad)"/>
             <defs>
