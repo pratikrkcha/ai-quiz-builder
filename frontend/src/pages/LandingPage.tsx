@@ -89,22 +89,24 @@ export const LandingPage = () => {
     >
       {/* Hand drawn decor */}
       <div className="relative mb-4 md:mb-12 -rotate-2 z-50 inline-block text-center mt-2 md:mt-6">
-        <svg 
-          viewBox="0 0 28 28" fill="none" 
-          className="absolute -top-3 -left-4 sm:-top-4 sm:-left-6 md:-top-5 md:-left-10 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 drop-shadow-[0_0_12px_rgba(124,58,237,0.6)]"
-        >
-          <path d="M14 0C14 0 14 14 0 14C0 14 14 14 14 28C14 28 14 14 28 14C28 14 14 14 14 0Z" fill="url(#geminiGradSm)"/>
-          <defs>
-            <linearGradient id="geminiGradSm" x1="0" y1="0" x2="28" y2="28">
-              <stop offset="0%" stop-color="#4285F4"/>
-              <stop offset="50%" stop-color="#7C3AED"/>
-              <stop offset="100%" stop-color="#06B6D4"/>
-            </linearGradient>
-          </defs>
-        </svg>
         <h1 className="text-5xl sm:text-6xl md:text-7xl font-kalam font-bold text-accent whitespace-normal md:whitespace-nowrap leading-tight text-center">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] via-[#7C3AED] to-[#06B6D4] drop-shadow-sm pr-2 sm:pr-3">
-            AI
+          <span className="relative inline-block">
+            <svg 
+              viewBox="0 0 28 28" fill="none" 
+              className="absolute -top-3 -left-4 sm:-top-4 sm:-left-6 md:-top-5 md:-left-8 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 drop-shadow-[0_0_12px_rgba(124,58,237,0.6)]"
+            >
+              <path d="M14 0C14 0 14 14 0 14C0 14 14 14 14 28C14 28 14 14 28 14C28 14 14 14 14 0Z" fill="url(#geminiGradSm)"/>
+              <defs>
+                <linearGradient id="geminiGradSm" x1="0" y1="0" x2="28" y2="28">
+                  <stop offset="0%" stop-color="#4285F4"/>
+                  <stop offset="50%" stop-color="#7C3AED"/>
+                  <stop offset="100%" stop-color="#06B6D4"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] via-[#7C3AED] to-[#06B6D4] drop-shadow-sm pr-2 sm:pr-3">
+              AI
+            </span>
           </span>
           Quiz Builder!
           <svg 
