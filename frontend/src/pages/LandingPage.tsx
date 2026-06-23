@@ -220,7 +220,7 @@ export const LandingPage = () => {
 
               <div className="text-center h-[60px] pt-2" style={{ visibility: isLoading ? 'visible' : 'hidden' }}>
                 <div className="font-patrick text-[18px] text-[#4285F4] h-7 flex justify-center">
-                  <div className="w-[180px] text-left whitespace-nowrap">
+                  <div className="whitespace-nowrap">
                     {typewriterText}
                     <span className="animate-pulse ml-[1px]">|</span>
                   </div>
