@@ -85,10 +85,10 @@ export const LandingPage = () => {
 
   return (
     <div 
-      className="flex-1 flex flex-col items-center justify-center p-6 font-patrick text-ink"
+      className="flex-1 flex flex-col items-center justify-center p-4 md:p-6 font-patrick text-ink"
     >
       {/* Hand drawn decor */}
-      <div className="relative mb-12 -rotate-2 z-50 inline-block text-center mt-6">
+      <div className="relative mb-4 md:mb-12 -rotate-2 z-50 inline-block text-center mt-2 md:mt-6">
         <svg 
           width="32" height="32" viewBox="0 0 28 28" fill="none" 
           className="absolute -top-5 -left-10 hidden md:block drop-shadow-[0_0_12px_rgba(124,58,237,0.6)]"
@@ -123,13 +123,13 @@ export const LandingPage = () => {
         </h1>
       </div>
       
-      <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+      <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 relative z-10">
         {/* Host Card */}
-        <div className="bg-white border-[3px] border-ink p-8 rounded-wobbly shadow-[6px_6px_0px_0px_#2d2d2d] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_#2d2d2d] transition-all duration-200">
-          <h2 className="text-3xl font-kalam mb-4 font-bold border-b-2 border-dashed border-ink pb-2">Host a Quiz</h2>
-            <form onSubmit={handleCreate} className="space-y-4 pt-2">
+        <div className="bg-white border-[3px] border-ink p-5 md:p-8 rounded-wobbly shadow-[6px_6px_0px_0px_#2d2d2d] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_#2d2d2d] transition-all duration-200">
+          <h2 className="text-2xl md:text-3xl font-kalam mb-3 md:mb-4 font-bold border-b-2 border-dashed border-ink pb-2">Host a Quiz</h2>
+            <form onSubmit={handleCreate} className="space-y-3 md:space-y-4 pt-2">
               <div>
-                <label htmlFor="topic" className="block text-xl font-bold mb-2">What's the topic?</label>
+                <label htmlFor="topic" className="block text-lg md:text-xl font-bold mb-1 md:mb-2">What's the topic?</label>
                 <textarea 
                   id="topic"
                   value={topic}
@@ -137,22 +137,22 @@ export const LandingPage = () => {
                   maxLength={100}
                   placeholder="e.g. The history of Rome..."
                   aria-label="Quiz topic"
-                  className="w-full bg-paper border-2 border-ink p-4 rounded-wobblyMd focus:outline-none focus:border-bluepen focus:ring-2 focus:ring-bluepen/20 resize-none h-28 text-xl placeholder-ink/40"
+                  className="w-full bg-paper border-2 border-ink p-3 md:p-4 rounded-wobblyMd focus:outline-none focus:border-bluepen focus:ring-2 focus:ring-bluepen/20 resize-none h-20 md:h-28 text-lg md:text-xl placeholder-ink/40"
                 />
                 <div className="text-right text-sm text-ink/70 mt-1 font-bold">
                   {topic.length}/100
                 </div>
               </div>
               
-              <div className="pt-2">
-                <label className="block text-xl font-bold mb-2">Timer Duration</label>
+              <div className="pt-1 md:pt-2">
+                <label className="block text-lg md:text-xl font-bold mb-1 md:mb-2">Timer Duration</label>
                 <div className="flex gap-2 justify-between">
                   {[15, 30, 50, 120].map((t) => (
                     <button
                       key={t}
                       type="button"
                       onClick={() => setTimerDuration(t)}
-                      className={`flex-1 py-2 font-kalam font-bold text-lg rounded-wobbly transition-all ${
+                      className={`flex-1 py-1 md:py-2 font-kalam font-bold text-base md:text-lg rounded-wobbly transition-all ${
                         timerDuration === t 
                           ? 'bg-[#fff9c4] border-[3px] border-ink shadow-[2px_2px_0px_0px_#2d2d2d]' 
                           : 'bg-white border-2 border-ink hover:bg-gray-50'
@@ -164,15 +164,15 @@ export const LandingPage = () => {
                 </div>
               </div>
 
-              <div className="pt-2">
-                <label className="block text-xl font-bold mb-2">Number of Questions</label>
+              <div className="pt-1 md:pt-2">
+                <label className="block text-lg md:text-xl font-bold mb-1 md:mb-2">Number of Questions</label>
                 <div className="flex gap-2 justify-between">
                   {[5, 10, 15].map((q) => (
                     <button
                       key={q}
                       type="button"
                       onClick={() => setNumQuestions(q)}
-                      className={`flex-1 py-2 font-kalam font-bold text-lg rounded-wobbly transition-all ${
+                      className={`flex-1 py-1 md:py-2 font-kalam font-bold text-base md:text-lg rounded-wobbly transition-all ${
                         numQuestions === q 
                           ? 'bg-[#fff9c4] border-[3px] border-ink shadow-[2px_2px_0px_0px_#2d2d2d]' 
                           : 'bg-white border-2 border-ink hover:bg-gray-50'
@@ -233,10 +233,10 @@ export const LandingPage = () => {
           </div>
 
         {/* Join Card */}
-        <div className="bg-white border-[3px] border-ink p-8 rounded-wobblyMd shadow-[6px_6px_0px_0px_#2d2d2d] hover:rotate-1 hover:shadow-[8px_8px_0px_0px_#2d2d2d] transition-all duration-200 flex flex-col justify-center items-center text-center relative h-full">
+        <div className="bg-white border-[3px] border-ink p-6 md:p-8 rounded-wobblyMd shadow-[6px_6px_0px_0px_#2d2d2d] hover:rotate-1 hover:shadow-[8px_8px_0px_0px_#2d2d2d] transition-all duration-200 flex flex-col justify-center items-center text-center relative h-full">
           <div className="absolute -top-4 -right-4 w-8 h-8 bg-accent rounded-full shadow-md z-20 border-2 border-ink"></div> {/* Thumbtack */}
-          <h2 className="text-3xl font-kalam mb-4 font-bold">Have a Code?</h2>
-          <p className="text-xl mb-8">Join your friends and prove your knowledge on the live leaderboard!</p>
+          <h2 className="text-2xl md:text-3xl font-kalam mb-2 md:mb-4 font-bold">Have a Code?</h2>
+          <p className="text-lg md:text-xl mb-4 md:mb-8">Join your friends and prove your knowledge on the live leaderboard!</p>
           <button 
             onClick={() => setLocation('/join')}
             className="w-full bg-muted border-[3px] border-ink py-3 text-2xl font-bold rounded-wobbly shadow-[4px_4px_0px_0px_#2d2d2d] hover:bg-bluepen hover:text-white transition-all hover:scale-[1.02]"
