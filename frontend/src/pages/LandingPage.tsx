@@ -218,9 +218,12 @@ export const LandingPage = () => {
                 </button>
               </div>
 
-              <div className="text-center min-h-[50px] pt-2" style={{ visibility: isLoading ? 'visible' : 'hidden' }}>
-                <div className="font-patrick text-[18px] text-[#4285F4]">
-                  {typewriterText}
+              <div className="text-center h-[60px] pt-2" style={{ visibility: isLoading ? 'visible' : 'hidden' }}>
+                <div className="font-patrick text-[18px] text-[#4285F4] h-7 flex justify-center">
+                  <div className="w-[180px] text-left whitespace-nowrap">
+                    {typewriterText}
+                    <span className="animate-pulse ml-[1px]">|</span>
+                  </div>
                 </div>
                 <div className="font-patrick text-[16px] text-[#4285F4] flex items-center justify-center mt-1">
                   <svg width="16" height="16" viewBox="0 0 28 28" fill="none" className="mr-1">
