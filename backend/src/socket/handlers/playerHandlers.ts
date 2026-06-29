@@ -31,10 +31,24 @@ export const handlePlayerJoin = async (io: Server, socket: Socket, payload: any)
   const room = await findRoomByCode(roomCode);
   const player = room.players.find(p => p.socketId === socket.id);
 
+  let currentQuestion = null;
+  if (room.status === 'playing' && room.currentQuestionIndex >= 0 && room.currentQuestionIndex < room.questions.length) {
+    const q = room.questions[room.currentQuestionIndex];
+    currentQuestion = {
+      index: room.currentQuestionIndex,
+      text: q.text,
+      options: q.options,
+      timeLimitMs: room.timerDuration * 1000
+    };
+  }
+
   socket.emit('join_success', { 
     nickname, 
     currentScore: player?.score || 0,
-    questionCount: room.questions.length
+    questionCount: room.questions.length,
+    status: room.status,
+    currentQuestion,
+    leaderboard: room.players.map(p => ({ nickname: p.nickname, score: p.score }))
   });
 
   io.to(roomCode).emit('player_joined', { 
