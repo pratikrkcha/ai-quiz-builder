@@ -1,0 +1,145 @@
+
+> backend@1.0.0 test
+> vitest run
+
+
+ RUN  v4.1.9 /home/lilpaws/AI quiz platform/backend
+
+ ❯ dist/dal/roomRepository.test.js (0 test)
+ ❯ dist/services/llmService.test.js (0 test)
+ ✓ src/services/llmService.test.ts (8 tests) 9028ms
+     ✓ throws on invalid schema (e.g. fewer than 5 questions)  3005ms
+     ✓ retries on 429 and succeeds on the third attempt  3005ms
+     ✓ returns fallback questions on network timeout or total failure (generateQuestions wrapper)  3005ms
+stdout | tests/security/security.test.ts > Security Hardening Tests > prevents XSS via nickname by rejecting non-alphanumeric characters
+[Connected] 8kk6brgesv0_zhdiAAAB (UUID: b7c5a5b7-3a3a-4c5d-b66e-f851be48bc53)
+
+stdout | tests/security/security.test.ts > Security Hardening Tests > prevents NoSQL injection in roomCode (Zod intercepts object structure)
+[Connected] 87gFm8eGXEZlfNfPAAAD (UUID: e64836e0-1767-4794-9d36-26364e4e3b95)
+
+stdout | tests/security/security.test.ts > Security Hardening Tests > prevents participant from emitting host events (Elevation of Privilege)
+[Connected] K3xevUXj-qNQEdHJAAAF (UUID: 9a9980fd-de0e-4b3d-ac86-a41d6cda41e9)
+
+stdout | tests/security/security.test.ts > Security Hardening Tests > enforces socket event rate limit for submit_answer preventing DB DoS
+[Connected] 7n5UEOTYlzC6AM74AAAH (UUID: feb78036-0cb5-4137-ac4d-7745213cb262)
+
+stdout | tests/security/security.test.ts > Security Hardening Tests > enforces socket event rate limit for submit_answer preventing DB DoS
+[Connected] iV7T8CvU6quHJYxmAAAJ (UUID: a1520dfa-5017-4f61-b381-260cb9db740d)
+
+stdout | tests/security/security.test.ts
+[Host Dropped] Room: 2222 UUID: feb78036-0cb5-4137-ac4d-7745213cb262
+
+ ✓ tests/security/security.test.ts (4 tests) 1116ms
+     ✓ enforces socket event rate limit for submit_answer preventing DB DoS  568ms
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Happy Path - Complete Game Simulation
+[Connected] X-AFK1hl4WKxlQv7AAAB (UUID: 168477ec-4e99-44d1-ad9f-fd1a7ebc2b7f)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Happy Path - Complete Game Simulation
+[Connected] WYAczzWYu9rHDHq4AAAF (UUID: 14af1980-dd70-435a-a2a4-d9786dab7a72)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Happy Path - Complete Game Simulation
+[Connected] 7euqySHStgerPfiLAAAG (UUID: 423af45b-7343-49aa-8ebc-67f771cdca07)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Happy Path - Complete Game Simulation
+[Connected] I18zbn43JgNgeR25AAAH (UUID: f80675ef-3fc5-4a88-adbb-94aa6bdaa31d)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Concurrent Answer Submission Resiliency
+[Host Dropped] Room: ABCD UUID: 168477ec-4e99-44d1-ad9f-fd1a7ebc2b7f
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Concurrent Answer Submission Resiliency
+[Connected] oQetx6qDIi0ZvRfpAAAJ (UUID: 3b825084-59b6-46c4-813a-d81f1664e237)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Concurrent Answer Submission Resiliency
+[Connected] 47wT-kxmi50xu4lfAAAU (UUID: 769bc1e8-a725-43dd-9baf-6705919f5158)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Concurrent Answer Submission Resiliency
+[Connected] 4H_8Jixm5Rn63A3xAAAV (UUID: 29c4dbc5-5482-4d9a-a984-a9380f3b72d6)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Concurrent Answer Submission Resiliency
+[Connected] Xe6_NNplLbJ4Gu-CAAAW (UUID: ace70b93-f435-49cf-bcfa-b932f3132e52)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Concurrent Answer Submission Resiliency
+[Connected] xrGVTQlzH7Bia-hwAAAX (UUID: 68b7ee55-1782-4c50-aa29-f654bb262d93)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Concurrent Answer Submission Resiliency
+[Connected] qBA_mU_6acV5kYRNAAAY (UUID: 260c689b-fe0f-41e6-ac1c-3933a6f0e6ac)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Concurrent Answer Submission Resiliency
+[Connected] x0_SZSdZ19qRMaluAAAZ (UUID: 9a1783c1-277f-465f-a466-22ad2291df52)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Concurrent Answer Submission Resiliency
+[Connected] FwW9J_UoqaFIFZB5AAAa (UUID: ffe53e82-d7f3-4e44-9329-a480c1d4e868)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Concurrent Answer Submission Resiliency
+[Connected] qaj6FAatJ4nPwWOiAAAb (UUID: 03772289-29d6-4a55-86b6-97ca4be43ca6)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Concurrent Answer Submission Resiliency
+[Connected] eqY8Kr9eEIA67onHAAAc (UUID: 7bf79990-35c5-4721-a6a3-dca97a1941a6)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Concurrent Answer Submission Resiliency
+[Connected] 4E_p5Ztid7_i6eHdAAAd (UUID: a2470957-8bd7-4674-a964-1b0053fb4998)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Player Disconnect and Reconnect Preservation
+[Host Dropped] Room: CONC UUID: 3b825084-59b6-46c4-813a-d81f1664e237
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Player Disconnect and Reconnect Preservation
+[Connected] LWTxQilLlKH99UMrAAAf (UUID: 272a4ab5-ef02-418a-a3ea-f39b1d6efa0a)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Player Disconnect and Reconnect Preservation
+[Connected] 5AaAGT-3u_JVzmvwAAAh (UUID: 1610e6ef-65ee-4076-b23f-31ba89fce963)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Player Disconnect and Reconnect Preservation
+[Connected] lf0UZx9BPNrLZT3EAAAj (UUID: 12839cdc-4971-4a24-8d98-470fc8049cd1)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Host Disconnect emits host_disconnected
+[Host Dropped] Room: RECO UUID: 1610e6ef-65ee-4076-b23f-31ba89fce963
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Host Disconnect emits host_disconnected
+[Connected] dXJYMvsWhWJ8_FLlAAAl (UUID: 4e12fb36-d1c0-48aa-98c3-6af355f0e2d4)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Host Disconnect emits host_disconnected
+[Connected] med7TVqUKdqlhs1NAAAn (UUID: 67ed8130-9d96-4dcd-a1b0-48f873ae9c30)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Host Disconnect emits host_disconnected
+[Host Dropped] Room: HDRO UUID: 4e12fb36-d1c0-48aa-98c3-6af355f0e2d4
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Answer Submission Idempotency (Spam Protection)
+[Connected] 12t-I3X0MYnbuKHRAAAp (UUID: 342c153c-38ae-4217-b36c-7ae4f95849b7)
+
+stdout | tests/integration/gameLifecycle.test.ts > End-to-End Game Lifecycle Integration Tests > Answer Submission Idempotency (Spam Protection)
+[Connected] rPmcyH5zHnGzeZ22AAAr (UUID: 029a815d-b29c-463b-af4b-9c72f2ce198d)
+
+stdout | tests/integration/gameLifecycle.test.ts
+[Host Dropped] Room: IDEM UUID: 342c153c-38ae-4217-b36c-7ae4f95849b7
+
+ ✓ tests/integration/gameLifecycle.test.ts (5 tests) 766ms
+ ✓ src/dal/roomRepository.test.ts (6 tests) 346ms
+stdout | tests/socket/socket.test.ts > Socket.io Game Flow Integration > runs full game flow, blocks unauthorized events, and prevents double answers
+[Connected] V9TBmoOAPUKLaGjoAAAC (UUID: 33af0514-8c73-42c9-8ddb-f357bb94ba43)
+
+stdout | tests/socket/socket.test.ts > Socket.io Game Flow Integration > runs full game flow, blocks unauthorized events, and prevents double answers
+[Connected] ZswHPc2UTfJMVPpsAAAD (UUID: fd8ee3a5-69c5-447e-942a-90327a255421)
+
+stdout | tests/socket/socket.test.ts > Socket.io Game Flow Integration > runs full game flow, blocks unauthorized events, and prevents double answers
+[Connected] 3SKyMa3zBD3Z_OOTAAAF (UUID: 7398d26f-8fbd-489e-aade-6ad2149c84e6)
+
+stdout | tests/socket/socket.test.ts
+[Host Dropped] Room: 9999 UUID: 33af0514-8c73-42c9-8ddb-f357bb94ba43
+
+ ✓ tests/socket/socket.test.ts (1 test) 456ms
+{"level":"info","time":"2026-06-29T10:11:50.771Z","pid":26670,"hostname":"fedora","req":{"id":"4b6510d5-f224-40fa-ad52-f9f9673e6685","method":"POST","url":"/api/rooms","query":{},"params":{},"headers":{"host":"127.0.0.1:44631","accept-encoding":"gzip, deflate","content-type":"application/json","content-length":"19","connection":"close"},"remoteAddress":"::ffff:127.0.0.1","remotePort":54872},"requestId":"4b6510d5-f224-40fa-ad52-f9f9673e6685","res":{"statusCode":201,"headers":{"content-security-policy":"default-src 'self';script-src 'self' 'unsafe-inline';style-src 'self' 'unsafe-inline';connect-src 'self' http://localhost:3000 http://localhost:5173 http://localhost:4000 ws: wss:;img-src 'self' data:;worker-src 'self' blob:;frame-ancestors 'none';base-uri 'self';font-src 'self' https: data:;form-action 'self';object-src 'none';script-src-attr 'none';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=31536000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","access-control-allow-origin":"http://localhost:3000","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":"5","x-ratelimit-remaining":"4","date":"Mon, 29 Jun 2026 10:11:50 GMT","x-ratelimit-reset":"1782728811","content-type":"application/json; charset=utf-8","content-length":"88","etag":"W/\"58-+w2/9zI8ZVVuK8nuunE2HFAFKww\""}},"responseTime":63,"msg":"request completed"}
+{"level":"info","time":"2026-06-29T10:11:50.782Z","pid":26670,"hostname":"fedora","req":{"id":"f5fddc43-703c-443b-a97a-d487d86bdc07","method":"POST","url":"/api/rooms","query":{},"params":{},"headers":{"host":"127.0.0.1:43581","accept-encoding":"gzip, deflate","content-type":"application/json","content-length":"12","connection":"close"},"remoteAddress":"::ffff:127.0.0.1","remotePort":53282},"requestId":"f5fddc43-703c-443b-a97a-d487d86bdc07","res":{"statusCode":400,"headers":{"content-security-policy":"default-src 'self';script-src 'self' 'unsafe-inline';style-src 'self' 'unsafe-inline';connect-src 'self' http://localhost:3000 http://localhost:5173 http://localhost:4000 ws: wss:;img-src 'self' data:;worker-src 'self' blob:;frame-ancestors 'none';base-uri 'self';font-src 'self' https: data:;form-action 'self';object-src 'none';script-src-attr 'none';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=31536000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","access-control-allow-origin":"http://localhost:3000","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":"5","x-ratelimit-remaining":"3","date":"Mon, 29 Jun 2026 10:11:50 GMT","x-ratelimit-reset":"1782728811","content-type":"application/json; charset=utf-8","content-length":"73","etag":"W/\"49-WEwnhOcM+zeB5YpyuRbafTXcBSA\""}},"responseTime":2,"msg":"request completed"}
+{"level":"info","time":"2026-06-29T10:11:50.789Z","pid":26670,"hostname":"fedora","req":{"id":"dc2a6d62-e7b2-4510-83ae-e655807c1c48","method":"POST","url":"/api/rooms","query":{},"params":{},"headers":{"host":"127.0.0.1:36149","accept-encoding":"gzip, deflate","content-type":"application/json","content-length":"40","connection":"close"},"remoteAddress":"::ffff:127.0.0.1","remotePort":39582},"requestId":"dc2a6d62-e7b2-4510-83ae-e655807c1c48","res":{"statusCode":400,"headers":{"content-security-policy":"default-src 'self';script-src 'self' 'unsafe-inline';style-src 'self' 'unsafe-inline';connect-src 'self' http://localhost:3000 http://localhost:5173 http://localhost:4000 ws: wss:;img-src 'self' data:;worker-src 'self' blob:;frame-ancestors 'none';base-uri 'self';font-src 'self' https: data:;form-action 'self';object-src 'none';script-src-attr 'none';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=31536000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","access-control-allow-origin":"http://localhost:3000","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":"5","x-ratelimit-remaining":"2","date":"Mon, 29 Jun 2026 10:11:50 GMT","x-ratelimit-reset":"1782728811","content-type":"application/json; charset=utf-8","content-length":"55","etag":"W/\"37-gtvrA8sMrRULDWYghpksOddPEkM\""}},"responseTime":4,"msg":"request completed"}
+{"level":"info","time":"2026-06-29T10:11:50.802Z","pid":26670,"hostname":"fedora","req":{"id":"5b16ec70-e069-4cae-847b-ecedaa60f61a","method":"POST","url":"/api/rooms","query":{},"params":{},"headers":{"host":"127.0.0.1:37271","accept-encoding":"gzip, deflate","content-type":"application/json","content-length":"19","connection":"close"},"remoteAddress":"::ffff:127.0.0.1","remotePort":43088},"requestId":"5b16ec70-e069-4cae-847b-ecedaa60f61a","res":{"statusCode":201,"headers":{"content-security-policy":"default-src 'self';script-src 'self' 'unsafe-inline';style-src 'self' 'unsafe-inline';connect-src 'self' http://localhost:3000 http://localhost:5173 http://localhost:4000 ws: wss:;img-src 'self' data:;worker-src 'self' blob:;frame-ancestors 'none';base-uri 'self';font-src 'self' https: data:;form-action 'self';object-src 'none';script-src-attr 'none';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=31536000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","access-control-allow-origin":"http://localhost:3000","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":"5","x-ratelimit-remaining":"1","date":"Mon, 29 Jun 2026 10:11:50 GMT","x-ratelimit-reset":"1782728811","content-type":"application/json; charset=utf-8","content-length":"88","etag":"W/\"58-uU9L4d61mE+r8JDCot0DMBDQNOk\""}},"responseTime":9,"msg":"request completed"}
+{"level":"info","time":"2026-06-29T10:11:50.813Z","pid":26670,"hostname":"fedora","req":{"id":"40c842b1-9880-4684-bd1a-b2dd46620407","method":"POST","url":"/api/rooms","query":{},"params":{},"headers":{"host":"127.0.0.1:35123","accept-encoding":"gzip, deflate","content-type":"application/json","content-length":"19","connection":"close"},"remoteAddress":"::ffff:127.0.0.1","remotePort":52676},"requestId":"40c842b1-9880-4684-bd1a-b2dd46620407","res":{"statusCode":201,"headers":{"content-security-policy":"default-src 'self';script-src 'self' 'unsafe-inline';style-src 'self' 'unsafe-inline';connect-src 'self' http://localhost:3000 http://localhost:5173 http://localhost:4000 ws: wss:;img-src 'self' data:;worker-src 'self' blob:;frame-ancestors 'none';base-uri 'self';font-src 'self' https: data:;form-action 'self';object-src 'none';script-src-attr 'none';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=31536000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","access-control-allow-origin":"http://localhost:3000","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":"5","x-ratelimit-remaining":"0","date":"Mon, 29 Jun 2026 10:11:50 GMT","x-ratelimit-reset":"1782728811","content-type":"application/json; charset=utf-8","content-length":"88","etag":"W/\"58-Jn/OCN+s9IVg26qsTFBxLofxZnM\""}},"responseTime":7,"msg":"request completed"}
+{"level":"info","time":"2026-06-29T10:11:50.816Z","pid":26670,"hostname":"fedora","req":{"id":"34beb7c2-2381-4a9b-a752-368a9c1fe3b4","method":"POST","url":"/api/rooms","query":{},"params":{},"headers":{"host":"127.0.0.1:38493","accept-encoding":"gzip, deflate","content-type":"application/json","content-length":"19","connection":"close"},"remoteAddress":"::ffff:127.0.0.1","remotePort":48662},"requestId":"34beb7c2-2381-4a9b-a752-368a9c1fe3b4","res":{"statusCode":429,"headers":{"content-security-policy":"default-src 'self';script-src 'self' 'unsafe-inline';style-src 'self' 'unsafe-inline';connect-src 'self' http://localhost:3000 http://localhost:5173 http://localhost:4000 ws: wss:;img-src 'self' data:;worker-src 'self' blob:;frame-ancestors 'none';base-uri 'self';font-src 'self' https: data:;form-action 'self';object-src 'none';script-src-attr 'none';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=31536000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","access-control-allow-origin":"http://localhost:3000","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":"5","x-ratelimit-remaining":"0","date":"Mon, 29 Jun 2026 10:11:50 GMT","x-ratelimit-reset":"1782728811","retry-after":"900","content-type":"application/json; charset=utf-8","content-length":"75","etag":"W/\"4b-FBLw2XzYf803gAMyqJ5hoeSiWNA\""}},"responseTime":1,"msg":"request completed"}
+{"level":"info","time":"2026-06-29T10:11:50.819Z","pid":26670,"hostname":"fedora","req":{"id":"a1988c07-cad2-452b-aa18-afbf27ae66c9","method":"POST","url":"/api/rooms","query":{},"params":{},"headers":{"host":"127.0.0.1:34665","accept-encoding":"gzip, deflate","content-type":"application/json","content-length":"19","connection":"close"},"remoteAddress":"::ffff:127.0.0.1","remotePort":43286},"requestId":"a1988c07-cad2-452b-aa18-afbf27ae66c9","res":{"statusCode":429,"headers":{"content-security-policy":"default-src 'self';script-src 'self' 'unsafe-inline';style-src 'self' 'unsafe-inline';connect-src 'self' http://localhost:3000 http://localhost:5173 http://localhost:4000 ws: wss:;img-src 'self' data:;worker-src 'self' blob:;frame-ancestors 'none';base-uri 'self';font-src 'self' https: data:;form-action 'self';object-src 'none';script-src-attr 'none';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=31536000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","access-control-allow-origin":"http://localhost:3000","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":"5","x-ratelimit-remaining":"0","date":"Mon, 29 Jun 2026 10:11:50 GMT","x-ratelimit-reset":"1782728811","retry-after":"900","content-type":"application/json; charset=utf-8","content-length":"75","etag":"W/\"4b-FBLw2XzYf803gAMyqJ5hoeSiWNA\""}},"responseTime":1,"msg":"request completed"}
+{"level":"info","time":"2026-06-29T10:11:50.822Z","pid":26670,"hostname":"fedora","req":{"id":"a42b6ef0-76dd-4329-9c2e-cbc49970d61c","method":"POST","url":"/api/rooms","query":{},"params":{},"headers":{"host":"127.0.0.1:45395","accept-encoding":"gzip, deflate","content-type":"application/json","content-length":"19","connection":"close"},"remoteAddress":"::ffff:127.0.0.1","remotePort":44344},"requestId":"a42b6ef0-76dd-4329-9c2e-cbc49970d61c","res":{"statusCode":429,"headers":{"content-security-policy":"default-src 'self';script-src 'self' 'unsafe-inline';style-src 'self' 'unsafe-inline';connect-src 'self' http://localhost:3000 http://localhost:5173 http://localhost:4000 ws: wss:;img-src 'self' data:;worker-src 'self' blob:;frame-ancestors 'none';base-uri 'self';font-src 'self' https: data:;form-action 'self';object-src 'none';script-src-attr 'none';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=31536000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","access-control-allow-origin":"http://localhost:3000","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":"5","x-ratelimit-remaining":"0","date":"Mon, 29 Jun 2026 10:11:50 GMT","x-ratelimit-reset":"1782728811","retry-after":"900","content-type":"application/json; charset=utf-8","content-length":"75","etag":"W/\"4b-FBLw2XzYf803gAMyqJ5hoeSiWNA\""}},"responseTime":0,"msg":"request completed"}
+{"level":"info","time":"2026-06-29T10:11:50.825Z","pid":26670,"hostname":"fedora","req":{"id":"42632987-fd7d-4aac-b4ca-fe2dc4f17274","method":"POST","url":"/api/rooms","query":{},"params":{},"headers":{"host":"127.0.0.1:41735","accept-encoding":"gzip, deflate","content-type":"application/json","content-length":"20","connection":"close"},"remoteAddress":"::ffff:127.0.0.1","remotePort":60616},"requestId":"42632987-fd7d-4aac-b4ca-fe2dc4f17274","res":{"statusCode":429,"headers":{"content-security-policy":"default-src 'self';script-src 'self' 'unsafe-inline';style-src 'self' 'unsafe-inline';connect-src 'self' http://localhost:3000 http://localhost:5173 http://localhost:4000 ws: wss:;img-src 'self' data:;worker-src 'self' blob:;frame-ancestors 'none';base-uri 'self';font-src 'self' https: data:;form-action 'self';object-src 'none';script-src-attr 'none';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=31536000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","access-control-allow-origin":"http://localhost:3000","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":"5","x-ratelimit-remaining":"0","date":"Mon, 29 Jun 2026 10:11:50 GMT","x-ratelimit-reset":"1782728811","retry-after":"900","content-type":"application/json; charset=utf-8","content-length":"75","etag":"W/\"4b-FBLw2XzYf803gAMyqJ5hoeSiWNA\""}},"responseTime":1,"msg":"request completed"}
+ ✓ tests/api/rooms.test.ts (4 tests) 377ms
+
+ Test Files  2 failed | 6 passed (8)
+      Tests  28 passed (28)
+   Start at  15:41:34
+   Duration  16.75s (transform 211ms, setup 112ms, import 2.49s, tests 12.09s, environment 1ms)
+

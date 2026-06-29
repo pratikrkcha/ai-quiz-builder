@@ -7,10 +7,8 @@ export default defineConfig({
     setupFiles: ['./tests/setup.ts'],
     testTimeout: 30000,
     isolate: true,
-    poolOptions: {
-      threads: { singleThread: true },
-      forks: { singleFork: true }
-    },
+    exclude: ['dist/**', 'node_modules/**'],
+    fileParallelism: false,
     coverage: {
       provider: 'v8',
       reporter: ['html', 'lcov', 'text'],
