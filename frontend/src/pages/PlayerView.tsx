@@ -189,10 +189,13 @@ export const PlayerView = () => {
       {/* Top Bar */}
       <div className="flex flex-row items-center justify-between mb-3 md:mb-10 bg-white border-[3px] border-ink p-2 sm:p-4 md:p-6 rounded-wobbly shadow-[4px_4px_0px_0px_#2d2d2d] text-sm sm:text-base">
         
-        {/* LEFT — nickname */}
-        <div className="w-1/4 flex justify-start">
+        {/* LEFT — nickname & code */}
+        <div className="w-1/4 flex items-center gap-3">
           <span className="font-bold text-lg md:text-2xl bg-[#fff9c4] px-2 sm:px-4 py-1 border-2 border-ink rounded-wobblyMd hidden sm:inline -rotate-1 shadow-sm truncate max-w-full">
             {nickname}
+          </span>
+          <span className="font-bold text-sm md:text-lg bg-white px-2 md:px-3 py-1 border-2 border-ink rounded-wobbly hidden lg:inline shadow-sm rotate-1">
+            Code: <span className="text-bluepen font-kalam tracking-wide">{roomCode}</span>
           </span>
         </div>
 

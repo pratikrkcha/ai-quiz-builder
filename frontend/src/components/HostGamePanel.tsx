@@ -3,7 +3,7 @@ import { useGameStore } from '../store/useGameStore';
 import { useSocket } from '../hooks/useSocket';
 
 export const HostGamePanel = () => {
-  const { currentQuestion, leaderboard, status, questionCount, correctAnswerIndex } = useGameStore();
+  const { currentQuestion, leaderboard, status, questionCount, correctAnswerIndex, roomCode } = useGameStore();
   const { emit } = useSocket();
   const [isNexting, setIsNexting] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
@@ -140,7 +140,10 @@ export const HostGamePanel = () => {
       <div className="w-full lg:w-96 bg-[#fff9c4] border-[3px] border-ink p-6 rounded-wobblyMd shadow-[6px_6px_0px_0px_#2d2d2d] relative h-fit lg:sticky lg:top-8">
         <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-8 bg-bluepen rounded-full shadow-md z-20 border-2 border-ink"></div>
         
-        <h3 className="text-4xl font-kalam font-bold text-center mb-6 mt-2">Live Rankings</h3>
+        <h3 className="text-4xl font-kalam font-bold text-center mb-1 mt-2">Live Rankings</h3>
+        <p className="text-center text-lg mb-6 border-b-[2px] border-dashed border-ink/30 pb-4">
+          Join Code: <span className="font-kalam font-bold bg-white px-2 py-1 border-2 border-ink rounded-wobbly ml-1 rotate-1 inline-block">{roomCode}</span>
+        </p>
         
         <div className="space-y-4">
           {sortedLeaderboard.map((player, idx) => (

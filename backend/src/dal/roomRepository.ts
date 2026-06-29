@@ -46,11 +46,9 @@ export const generateUniqueRoomCode = async (): Promise<string> => {
 };
 
 export const addPlayer = async (roomCode: string, nickname: string, socketId: string) => {
-  // Uses atomic updates: ensures room is in lobby, nickname is unique, and player limit is respected
   const room = await RoomModel.findOneAndUpdate(
     {
       roomCode,
-      status: 'lobby',
       'players.nickname': { $ne: nickname },
       $expr: { $lt: [{ $size: '$players' }, MAX_PLAYERS] }
     },
@@ -63,7 +61,6 @@ export const addPlayer = async (roomCode: string, nickname: string, socketId: st
   if (!room) {
     const existing = await RoomModel.findOne({ roomCode });
     if (!existing) throw new RoomError('ROOM_NOT_FOUND', 'Room does not exist');
-    if (existing.status !== 'lobby') throw new RoomError('ROOM_NOT_IN_LOBBY', 'Game has already started');
     if (existing.players.length >= MAX_PLAYERS) throw new RoomError('ROOM_FULL', 'Room is full');
     if (existing.players.some(p => p.nickname === nickname)) throw new RoomError('NICKNAME_TAKEN', 'Nickname already in use');
     throw new RoomError('JOIN_FAILED', 'Failed to join room');
