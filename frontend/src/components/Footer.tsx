@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <footer className="w-full border-t border-dashed border-ink/30 bg-[rgba(45,45,45,0.04)] py-3 mt-auto">
+    <footer className="w-full border-t border-dashed border-ink/30 bg-[#fdfbf7] py-3 mt-auto relative z-10">
       <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-center gap-2 font-patrick text-[13px] text-ink/60">
         <span>Built by Pratik Rakhecha</span>
         <svg width="10" height="10" viewBox="0 0 28 28" fill="none" className="hidden sm:block opacity-60">
