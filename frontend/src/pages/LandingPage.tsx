@@ -89,7 +89,7 @@ export const LandingPage = () => {
     >
       {/* Hand drawn decor */}
       <div className="relative mb-4 md:mb-12 -rotate-2 z-50 inline-block text-center mt-2 md:mt-6">
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-kalam font-bold text-accent whitespace-normal md:whitespace-nowrap leading-tight text-center [text-shadow:3px_3px_0px_white]">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl font-kalam font-bold text-accent whitespace-normal md:whitespace-nowrap leading-tight text-center">
           <span className="relative inline-block">
             <svg 
               viewBox="0 0 28 28" fill="none" 
